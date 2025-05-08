@@ -1,54 +1,89 @@
-# React + TypeScript + Vite
+# 🪙 Crypto Price Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time cryptocurrency price tracker built with **React**, **Redux Toolkit**, and **TypeScript**, using **Binance WebSocket API** for live updates.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📈 Real-time price updates via Binance WebSocket
+- 🔄 Redux Toolkit for efficient global state management
+- 💻 Built with TypeScript for type safety
+- 🧩 Modular structure with reusable components
+- ⚡ Smooth and responsive UI
 
-## Expanding the ESLint configuration
+## 🗂️ Folder Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+project-root/
+├── public/
+├── src/
+│   ├── components/      # Reusable React components
+│   ├── lib/             # Utility functions
+│   ├── services/        # WebSocket connection logic
+│   ├── store/           # Redux slices and store config
+├── app.tsx              # Root component
+├── app.css              # App-level styles
+├── index.css            # Global styles
+├── main.tsx             # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧪 Technologies Used
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- React
+- Redux Toolkit
+- TypeScript
+- Binance WebSocket API
+- Shadcn ui
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🔧 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/BharatiPatra/crpto-price-tracker.git
+cd crypto-price-tracker
+
+# Install dependencies
+npm install
+# or
+yarn
 ```
+
+## ▶️ Running the App
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open `http://localhost:5173` (or appropriate port) in your browser to view the app.
+
+## 🌐 WebSocket Source
+
+This project uses Binance’s WebSocket stream:
+```
+wss://stream.binance.com:9443/ws/{symbol}@ticker
+```
+
+Example: `btcusdt@ticker` for real-time BTC/USDT updates.
+
+## 📁 Example Redux Structure
+
+```ts
+// store/priceSlice.ts
+interface PriceState {
+  symbol: string;
+  price: string;
+}
+```
+
+## ✨ Screenshots
+
+> _You can add screenshots here to showcase the UI._
+
+## 📜 License
+
+MIT License
+
+---
+
+> Developed by [E. Bharati Patra](https://portfolio-bharatipatra.vercel.app/)

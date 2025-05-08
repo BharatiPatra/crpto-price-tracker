@@ -3,12 +3,14 @@ import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { fetchAssets, selectAllAssets } from "./store/crypto-slice";
 import { BinanceWebSocketService } from "./services/mock-socket";
 import CryptoTable from "./components/crypto-table";
-import { ShieldCheck } from "lucide-react"; // Changed from Coins
+import { ShieldCheck } from "lucide-react"; 
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const assets = useAppSelector(selectAllAssets);
-  const binanceWebSocketServiceRef = useRef<BinanceWebSocketService | null>(null);
+  const binanceWebSocketServiceRef = useRef<BinanceWebSocketService | null>(
+    null
+  );
 
   useEffect(() => {
     dispatch(fetchAssets());
@@ -18,17 +20,15 @@ export default function Home() {
     if (assets.length > 0) {
       if (!binanceWebSocketServiceRef.current) {
         binanceWebSocketServiceRef.current = new BinanceWebSocketService(
-          dispatch,        );
+          dispatch
+        );
       }
-      // Start or restart WebSocket service with current assets list if it changes or on initial load
       binanceWebSocketServiceRef.current.start(assets);
     }
 
     return () => {
       if (binanceWebSocketServiceRef.current) {
-        // Ensure WebSocket connection is stopped
         binanceWebSocketServiceRef.current.stop();
-        // Optionally dereference the service object after cleanup (if needed)
         binanceWebSocketServiceRef.current = null;
       }
     };
@@ -37,17 +37,12 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <header className="mb-8">
-        {" "}
-        {/* Removed text-center to align left like image header */}
         <div className="flex items-center justify-start gap-3 max-w-9xl mx-auto">
-          {" "}
-          {/* justify-start and mx-auto for content alignment */}
           <ShieldCheck className="h-10 w-10 text-accent" />
           <h1 className="text-4xl font-bold tracking-tight text-primary">
-            CryptoPulse
+            CryptoTracker
           </h1>
         </div>
-        {/* Subtitle removed to match the image */}
       </header>
 
       <div className="max-w-7xl mx-auto">

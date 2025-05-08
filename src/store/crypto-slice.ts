@@ -38,13 +38,10 @@ const cryptoSlice = createSlice({
     updateAsset: (state, action: PayloadAction<AssetUpdatePayload>) => {
         const assetIndex = state.assets.findIndex(asset => asset.id === action.payload.id);
         if (assetIndex !== -1) {
-          // If price is updated and no sparkline is provided, update the sparkline
           if (action.payload.price && !action.payload.sparkline7d) {
-            // Create a new sparkline by removing the oldest price and adding the new one
             const currentSparkline = [...state.assets[assetIndex].sparkline7d];
             const newSparkline = [...currentSparkline.slice(1), action.payload.price];
             
-            // Merge the updated asset with the new sparkline
             state.assets[assetIndex] = { 
               ...state.assets[assetIndex], 
               ...action.payload,
